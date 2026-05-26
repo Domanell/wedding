@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<title>Марина & Александр · 03.07.2026 · Kraków</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Monsieur+La+Doulaise&family=Pinyon+Script&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<div id="preloader" aria-hidden="true">
+			<div class="preloader-spinner"></div>
+		</div>
+
+		<main>
+			<!-- HERO -->
+			<section class="hero-screen">
+				<div class="topbar">
+					<span><span class="pip"></span>Kraków</span>
+					<span>03 · 07 · 26</span>
+				</div>
+
+				<div class="env-wrap" id="env" role="button" aria-label="Открыть конверт" tabindex="0">
+					<div class="env-shadow"></div>
+					<div class="env-back"></div>
+					<div class="letter">
+						<div class="l-eyebrow">— приглашаем вас на —</div>
+						<div>
+							<div class="l-script">Our Wedding</div>
+							<div class="l-names">Марина <em>&amp;</em> Александр</div>
+						</div>
+						<div class="l-rule"></div>
+						<div>
+							<div class="l-date">03 · 07 · 2026</div>
+							<div class="l-place">Kraków · Polska</div>
+						</div>
+						<div class="l-foot">мы будем счастливы видеть вас</div>
+					</div>
+					<div class="env-front"></div>
+					<div class="env-flap"></div>
+					<div class="gold-signature">Invitation</div>
+				</div>
+
+				<div class="scroll-after">
+					<span>детали ниже</span>
+					<span class="stem"></span>
+				</div>
+			</section>
+
+			<!-- PERSONAL -->
+			<div class="personal" id="personal" hidden>
+				<div class="personal-inner reveal">
+					<div class="label">для</div>
+					<div class="who" id="personal-who"></div>
+				</div>
+			</div>
+
+			<!-- COUNTDOWN -->
+			<section class="detail">
+				<div class="sec-eyebrow reveal">
+					<span class="ln"></span><span>I — отсчёт</span><span class="ln"></span>
+				</div>
+				<h2 class="sec-title reveal d1">До нашего <em>дня</em></h2>
+				<div class="cd">
+					<div class="cd-c accent reveal d1">
+						<div class="cd-num" id="cd-d">—</div>
+						<div class="cd-lbl">дней</div>
+					</div>
+					<div class="cd-c reveal d2">
+						<div class="cd-num" id="cd-h">—</div>
+						<div class="cd-lbl">часов</div>
+					</div>
+					<div class="cd-c reveal d3">
+						<div class="cd-num" id="cd-m">—</div>
+						<div class="cd-lbl">минут</div>
+					</div>
+					<div class="cd-c reveal d4">
+						<div class="cd-num" id="cd-s">—</div>
+						<div class="cd-lbl">секунд</div>
+					</div>
+				</div>
+				<div class="cd-foot reveal d5">пятница · 3 июля 2026 · 11:30</div>
+			</section>
+
+			<!-- PROGRAMME -->
+			<section class="detail">
+				<div class="sec-eyebrow reveal">
+					<span class="ln"></span><span>II — программа</span><span class="ln"></span>
+				</div>
+				<h2 class="sec-title reveal d1">Программа <em>дня</em></h2>
+				<div class="prog">
+					<div class="pr reveal d1">
+						<div class="t"><em>11:00</em></div>
+						<span class="dot"></span>
+						<div class="body"><div class="name">Сбор гостей</div></div>
+					</div>
+					<div class="pr reveal d2">
+						<div class="t">11:30</div>
+						<span class="dot"></span>
+						<div class="body"><div class="name">Церемония</div></div>
+					</div>
+					<div class="pr reveal d3">
+						<div class="t">12:30</div>
+						<span class="dot"></span>
+						<div class="body"><div class="name">Поздравления и фото</div></div>
+					</div>
+					<div class="pr reveal d4">
+						<div class="t">19:00</div>
+						<span class="dot"></span>
+						<div class="body"><div class="name">Ужин</div></div>
+					</div>
+					<div class="pr reveal d5">
+						<div class="t"><em>22:00</em></div>
+						<span class="dot"></span>
+						<div class="body"><div class="name">Танцы до утра</div></div>
+					</div>
+				</div>
+			</section>
+
+			<!-- PLACE -->
+			<section class="detail">
+				<div class="sec-eyebrow reveal">
+					<span class="ln"></span><span>III — место</span><span class="ln"></span>
+				</div>
+				<div class="place-text">
+					<h3 class="city reveal d1">Kra<em>k</em>ów</h3>
+					<div class="country reveal d2">Польша · Polska</div>
+					<p class="reveal d3">
+						Точный адрес и логистику пришлём индивидуально ближе к дате. Если планируете прилёт, напишите
+						нам, мы поможем со всеми деталями.
+					</p>
+				</div>
+			</section>
+
+			<!-- CLOSING -->
+			<section class="closing">
+				<p class="closing-words reveal">Будем счастливы, <em>если вы будете рядом</em> в этот день.</p>
+				<div class="closing-sig reveal d2">Марина <em>&amp;</em> Александр</div>
+				<div class="closing-meta reveal d3">MMXXVI · Kraków</div>
+			</section>
+		</main>
+
+		<script src="main.js"></script>
+	</body>
+</html>
