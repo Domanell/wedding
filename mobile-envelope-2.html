@@ -7,7 +7,7 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Monsieur+La+Doulaise&family=Pinyon+Script&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Pinyon+Script&family=Inter:wght@300;400;500&display=swap"
 			rel="stylesheet"
 		/>
 		<style>
@@ -21,10 +21,10 @@
 				--env-deep: #2a4338;
 				--env-mid: #345449;
 				--env-edge: #1c2e25;
-				--env-crease: rgba(12, 24, 19, 0.28);
-				--env-light: rgba(255, 255, 255, 0.08);
 				--gold: #b08a5e;
 				--gold-deep: #8a6a44;
+				--wax: #7a3a2a;
+				--wax-deep: #5a2a1d;
 			}
 			* {
 				box-sizing: border-box;
@@ -125,67 +125,48 @@
 			/* ENVELOPE */
 			@keyframes envFly {
 				0% {
-					transform: translate3d(-24px, -125vh, 0) rotateZ(-10deg) rotateY(-18deg)
-						scale(calc(var(--env-scale) * 0.92));
+					transform: translateY(-130vh) rotate(-8deg) scale(var(--env-scale));
 					opacity: 0;
 				}
-				48% {
-					transform: translate3d(12px, 24px, 0) rotateZ(2.5deg) rotateY(5deg)
-						scale(calc(var(--env-scale) * 1.02));
+				55% {
+					transform: translateY(28px) rotate(2deg) scale(var(--env-scale));
 					opacity: 1;
 				}
-				68% {
-					transform: translate3d(-5px, -9px, 0) rotateZ(-1.2deg) rotateY(-2deg) scale(var(--env-scale));
-				}
-				84% {
-					transform: translate3d(2px, 4px, 0) rotateZ(0.45deg) rotateY(1deg) scale(var(--env-scale));
+				75% {
+					transform: translateY(-10px) rotate(-1deg) scale(var(--env-scale));
 				}
 				100% {
-					transform: translate3d(0, 0, 0) rotateZ(0deg) rotateY(0deg) scale(var(--env-scale));
+					transform: translateY(0) rotate(0deg) scale(var(--env-scale));
 					opacity: 1;
-				}
-			}
-			@keyframes signatureGleam {
-				0%,
-				100% {
-					background-position: 0% 50%;
-				}
-				50% {
-					background-position: 100% 50%;
 				}
 			}
 			.env-wrap {
 				--env-scale: 1;
 				position: relative;
 				margin: 0 auto;
-				margin-top: -86px;
-				width: 312px;
-				height: 420px;
-				perspective: 1600px;
+				margin-top: -100px;
+				width: 300px;
+				height: 396px;
+				perspective: 1400px;
 				cursor: pointer;
 				user-select: none;
-				animation: envFly 1.85s cubic-bezier(0.25, 0.78, 0.2, 1) 0.18s both;
+				animation: envFly 1.6s cubic-bezier(0.3, 0.7, 0.2, 1) 0.2s both;
 				transform-origin: 50% 50%;
-				will-change: transform;
 			}
 			.env-shadow {
 				position: absolute;
 				left: 50%;
-				bottom: -20px;
+				bottom: -18px;
 				transform: translateX(-50%);
-				width: 292px;
-				height: 24px;
+				width: 280px;
+				height: 18px;
 				border-radius: 50%;
-				background: radial-gradient(50% 100% at 50% 0%, rgba(28, 46, 37, 0.34), transparent 74%);
-				filter: blur(1px);
-				transition:
-					opacity 0.8s,
-					transform 1.4s cubic-bezier(0.25, 0.78, 0.2, 1);
+				background: radial-gradient(50% 100% at 50% 0%, rgba(28, 46, 37, 0.35), transparent 70%);
+				transition: opacity 0.6s;
 				z-index: 0;
 			}
 			.env-wrap.open .env-shadow {
-				opacity: 0.58;
-				transform: translateX(-50%) scaleX(1.08);
+				opacity: 0.7;
 			}
 
 			.env-back,
@@ -200,18 +181,12 @@
 				bottom: 0;
 				left: 0;
 				right: 0;
-				height: 210px;
-				overflow: hidden;
-				background:
-					linear-gradient(105deg, transparent 0 49.7%, var(--env-crease) 50%, transparent 50.7%),
-					linear-gradient(255deg, transparent 0 49.7%, rgba(255, 255, 255, 0.05) 50%, transparent 50.7%),
-					radial-gradient(120% 95% at 50% 0%, rgba(255, 255, 255, 0.1), transparent 46%),
-					linear-gradient(180deg, var(--env-mid), var(--env-deep) 78%);
-				border-radius: 0 0 6px 6px;
+				height: 200px;
+				background: linear-gradient(180deg, var(--env-mid), var(--env-deep) 75%);
+				border-radius: 4px;
 				box-shadow:
-					0 34px 68px -26px rgba(28, 46, 37, 0.54),
-					inset 0 1px 0 var(--env-light),
-					inset 0 -18px 30px rgba(11, 24, 19, 0.16);
+					0 30px 60px -20px rgba(28, 46, 37, 0.35),
+					inset 0 0 0 1px rgba(255, 255, 255, 0.04);
 				z-index: 1;
 			}
 			/* corner crease lines on the back panel — subtle envelope detail */
@@ -222,15 +197,14 @@
 				top: 0;
 				width: 50%;
 				height: 100%;
-				opacity: 0.9;
-				background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, transparent 54%);
+				background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, transparent 60%);
 			}
 			.env-back::before {
 				left: 0;
 			}
 			.env-back::after {
 				right: 0;
-				background: linear-gradient(225deg, rgba(0, 0, 0, 0.09) 0%, transparent 58%);
+				background: linear-gradient(225deg, rgba(255, 255, 255, 0.04) 0%, transparent 60%);
 			}
 
 			/* LETTER inside */
@@ -241,25 +215,20 @@
      tucked behind the envelope front. */
 			.letter {
 				left: 50%;
-				bottom: 18px;
-				width: 278px;
-				height: 178px;
+				bottom: 14px;
+				width: 268px;
+				height: 172px;
 				transform: translateX(-50%) translateY(0) rotate(0deg);
 				background: var(--paper);
-				background-image:
-					linear-gradient(90deg, rgba(255, 255, 255, 0.48), transparent 18% 82%, rgba(176, 138, 94, 0.06)),
-					radial-gradient(120% 100% at 50% 0%, rgba(176, 138, 94, 0.06), transparent 60%);
+				background-image: radial-gradient(120% 100% at 50% 0%, rgba(176, 138, 94, 0.04), transparent 60%);
 				border: 1px solid var(--paper-edge);
-				border-radius: 3px;
+				border-radius: 2px;
 				padding: 18px 20px;
-				box-shadow:
-					0 8px 18px rgba(28, 46, 37, 0.18),
-					inset 0 0 22px rgba(176, 138, 94, 0.05);
+				box-shadow: 0 6px 16px rgba(28, 46, 37, 0.18);
 				z-index: 2;
-				will-change: transform;
 				transition:
-					transform 1.85s 0.72s cubic-bezier(0.2, 0.78, 0.18, 1),
-					box-shadow 1.85s 0.72s ease;
+					transform 1.7s 0.9s cubic-bezier(0.3, 0.75, 0.25, 1),
+					box-shadow 1.7s 0.9s ease;
 				text-align: center;
 				display: flex;
 				flex-direction: column;
@@ -267,10 +236,8 @@
 				transform-origin: 0% 100%; /* pivot on lower-left so it acts like the letter is being pulled out by its top-right */
 			}
 			.env-wrap.open .letter {
-				transform: translateX(-50%) translateY(-222px) rotate(4.5deg);
-				box-shadow:
-					0 28px 52px rgba(28, 46, 37, 0.28),
-					inset 0 0 22px rgba(176, 138, 94, 0.05);
+				transform: translateX(-50%) translateY(-210px) rotate(6deg);
+				box-shadow: 0 24px 46px rgba(28, 46, 37, 0.3);
 			}
 			.letter .l-eyebrow {
 				font-size: 9px;
@@ -279,7 +246,7 @@
 				color: var(--gold-deep);
 			}
 			.letter .l-script {
-				font-family: 'Monsieur La Doulaise', 'Pinyon Script', cursive;
+				font-family: 'Pinyon Script', cursive;
 				font-size: 34px;
 				line-height: 1;
 				color: var(--ink);
@@ -336,41 +303,23 @@
 				bottom: 0;
 				left: 0;
 				right: 0;
-				height: 210px;
-				overflow: hidden;
-				clip-path: polygon(0 0, 50% 52%, 100% 0, 100% 100%, 0 100%);
-				background:
-					linear-gradient(153deg, transparent 0 49.5%, rgba(255, 255, 255, 0.055) 50%, transparent 50.9%),
-					linear-gradient(207deg, transparent 0 49.5%, rgba(9, 18, 15, 0.22) 50%, transparent 50.9%),
-					linear-gradient(180deg, var(--env-mid) 0%, var(--env-deep) 100%);
-				border-radius: 0 0 6px 6px;
+				height: 200px;
+				background: linear-gradient(180deg, var(--env-mid) 0%, var(--env-deep) 100%);
+				border-radius: 4px;
 				z-index: 3;
-				box-shadow:
-					inset 0 1px 0 rgba(255, 255, 255, 0.08),
-					inset 0 -24px 36px rgba(12, 24, 19, 0.2);
-			}
-			.env-front::before {
-				content: '';
-				position: absolute;
-				inset: 0 auto 0 0;
-				width: 58%;
-				background:
-					linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 48%),
-					linear-gradient(160deg, var(--env-mid), var(--env-deep));
-				clip-path: polygon(0 0, 100% 50%, 0 100%);
-				z-index: 1;
+				box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 			}
 			.env-front::after {
+				/* slight V emboss at top to show pocket lip */
 				content: '';
 				position: absolute;
-				inset: 0 0 0 auto;
-				width: 58%;
-				background:
-					linear-gradient(225deg, rgba(0, 0, 0, 0.11), transparent 50%),
-					linear-gradient(200deg, var(--env-mid), var(--env-deep));
-				clip-path: polygon(100% 0, 0 50%, 100% 100%);
+				top: 0;
+				left: 0;
+				right: 0;
+				height: 100%;
+				background: linear-gradient(180deg, rgba(0, 0, 0, 0.18) 0%, transparent 18%);
 				pointer-events: none;
-				z-index: 2;
+				border-radius: 4px;
 			}
 
 			/* FLAP — triangle pointing down, hinged at top.
@@ -381,61 +330,48 @@
 				bottom: 100px;
 				left: 0;
 				right: 0;
-				height: 110px;
-				background:
-					linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 42%),
-					linear-gradient(145deg, var(--env-mid), var(--env-edge));
+				height: 100px;
+				background: linear-gradient(180deg, var(--env-deep), var(--env-edge));
 				clip-path: polygon(0 0, 100% 0, 50% 100%);
 				transform-origin: top center;
 				transform: rotateX(0deg);
 				transition:
-					transform 1.35s cubic-bezier(0.6, 0, 0.18, 1),
+					transform 1.1s cubic-bezier(0.55, 0, 0.3, 1),
 					z-index 0s linear 0.55s;
 				z-index: 4;
-				will-change: transform;
-			}
-			.env-flap::after {
-				content: '';
-				position: absolute;
-				inset: 0;
-				background:
-					linear-gradient(105deg, transparent 0 49.5%, rgba(255, 255, 255, 0.09) 50%, transparent 50.8%),
-					linear-gradient(255deg, transparent 0 49.5%, rgba(0, 0, 0, 0.18) 50%, transparent 50.8%);
+				filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.18));
 			}
 			.env-wrap.open .env-flap {
 				transform: rotateX(180deg);
 				z-index: 0;
 			}
-			.gold-signature.gleam {
-				animation-play-state: running;
-			}
 
-			.gold-signature {
+			/* WAX SEAL — stays stationary on the centre of the envelope front (where wax
+     would be pressed when sealing). When the envelope opens, the flap rotates
+     behind it; the seal itself doesn't travel anywhere. */
+			.wax {
 				position: absolute;
-				bottom: 20px;
+				bottom: 50px;
 				left: 50%;
-				width: 300px;
-				transform: translate(-50%, -50%) rotate(-3deg);
-				z-index: 6;
-				/*Do not change font!!!*/
-				font-family: 'Pinyon Script', cursive;
-				font-size: 62px;
+				width: 46px;
+				height: 46px;
+				border-radius: 50%;
+				transform: translate(-50%, -50%);
+				background: radial-gradient(35% 35% at 35% 35%, #a25a44, var(--wax) 60%, var(--wax-deep) 100%);
+				box-shadow:
+					0 2px 6px rgba(0, 0, 0, 0.3),
+					inset 0 0 0 1px rgba(0, 0, 0, 0.18);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				z-index: 5;
+			}
+			.wax .wax-mono {
+				font-family: 'Cormorant Garamond', serif;
+				font-style: italic;
+				font-size: 18px;
+				color: rgba(255, 255, 255, 0.92);
 				line-height: 1;
-				text-align: center;
-				white-space: nowrap;
-				color: transparent;
-				background: linear-gradient(100deg, #caa763 0%, #f6e1ad 36%, #d9bd78 52%, #a9813f 76%, #d9bd78 100%);
-				background-size: 240% 100%;
-				-webkit-background-clip: text;
-				background-clip: text;
-				text-shadow:
-					0 0.4px 0 rgba(255, 255, 255, 0.1),
-					0 2px 6px rgba(7, 15, 12, 0.1);
-				opacity: 0.9;
-				pointer-events: none;
-				will-change: background-position;
-				animation: signatureGleam 4.2s ease-in-out infinite;
-				animation-play-state: paused;
 			}
 
 			/* SCROLL hint appears after open */
@@ -726,7 +662,7 @@
 					</div>
 					<div class="env-front"></div>
 					<div class="env-flap"></div>
-					<div class="gold-signature">Invitation</div>
+					<div class="wax"><span class="wax-mono">M&amp;A</span></div>
 				</div>
 
 				<div class="scroll-after">
@@ -834,10 +770,6 @@
 				var env = document.getElementById('env');
 				function open() {
 					env.classList.add('open');
-					setTimeout(function () {
-						var sig = env.querySelector('.gold-signature');
-						if (sig) sig.classList.add('gleam');
-					}, 2700);
 				}
 				env.addEventListener('click', open);
 				env.addEventListener('keydown', function (e) {
