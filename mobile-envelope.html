@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Марина & Александр · 03.07.2026 · Kraków</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Pinyon+Script&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#f1ebe0;
+    --paper:#faf6ec;
+    --paper-edge:rgba(42,37,30,.15);
+    --ink:#2a2520;
+    --soft:#7a6f60;
+    --line:rgba(42,37,30,.14);
+    --env-deep:#2a4338;
+    --env-mid:#345449;
+    --env-edge:#1c2e25;
+    --gold:#b08a5e;
+    --gold-deep:#8a6a44;
+    --wax:#7a3a2a;
+    --wax-deep:#5a2a1d;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{min-height:100vh;overflow-x:hidden}
+  .serif{font-family:"Cormorant Garamond",serif}
+  .script{font-family:"Pinyon Script",cursive}
+  .num{font-feature-settings:"tnum" 1}
+
+  /* reveals */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity 1.1s cubic-bezier(.2,.7,.2,1),transform 1.1s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .d1{transition-delay:.10s}.d2{transition-delay:.24s}.d3{transition-delay:.4s}.d4{transition-delay:.56s}.d5{transition-delay:.72s}
+
+  main{max-width:480px;margin:0 auto;padding:0 24px;position:relative}
+
+  /* HERO */
+  .hero-screen{min-height:100svh;display:flex;flex-direction:column;align-items:center;padding:24px 0 28px;position:relative}
+  .topbar{width:100%;display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--soft)}
+  .topbar .pip{display:inline-block;width:6px;height:6px;background:var(--gold);border-radius:50%;margin-right:8px;vertical-align:middle}
+
+  .hero-eyebrow{margin-top:14px;padding-top:0;font-family:"Cormorant Garamond",serif;font-style:italic;font-size:18px;color:var(--soft);text-align:center;opacity:.8;transition:opacity .6s}
+  .env-wrap.open ~ .hero-eyebrow{opacity:0;pointer-events:none}
+
+  /* ENVELOPE */
+  @keyframes envFly{
+    0%   { transform:translateY(-130vh) rotate(-8deg); opacity:0 }
+    55%  { transform:translateY(28px) rotate(2deg);   opacity:1 }
+    75%  { transform:translateY(-10px) rotate(-1deg) }
+    100% { transform:translateY(0) rotate(0deg);      opacity:1 }
+  }
+  .env-wrap{
+    position:relative;width:300px;height:560px;margin:8px auto 0;
+    perspective:1400px; cursor:pointer; user-select:none;
+    animation: envFly 1.6s cubic-bezier(.3,.7,.2,1) .2s both;
+    transform-origin: 50% 50%;
+  }
+  .env-shadow{
+    position:absolute;left:50%;bottom:-18px;transform:translateX(-50%);
+    width:280px;height:18px;border-radius:50%;
+    background:radial-gradient(50% 100% at 50% 0%,rgba(28,46,37,.35),transparent 70%);
+    transition:opacity .6s;
+    z-index:0;
+  }
+  .env-wrap.open .env-shadow{opacity:.7}
+
+  .env-back, .env-front, .env-flap, .letter{position:absolute;backface-visibility:visible}
+
+  .env-back{
+    bottom:0;left:0;right:0;height:200px;
+    background:linear-gradient(180deg,var(--env-mid),var(--env-deep) 75%);
+    border-radius:4px;
+    box-shadow:
+      0 30px 60px -20px rgba(28,46,37,.35),
+      inset 0 0 0 1px rgba(255,255,255,.04);
+    z-index:1;
+  }
+  /* corner crease lines on the back panel — subtle envelope detail */
+  .env-back::before, .env-back::after{
+    content:"";position:absolute;top:0;width:50%;height:100%;
+    background:linear-gradient(135deg,rgba(255,255,255,.04) 0%,transparent 60%);
+  }
+  .env-back::before{left:0}
+  .env-back::after{right:0;background:linear-gradient(225deg,rgba(255,255,255,.04) 0%,transparent 60%)}
+
+  /* LETTER inside */
+  /* LETTER — cream paper between the two envelope walls.
+     z:2 sits between env-back (z:1) and env-front (z:3), so the front pocket
+     hides the letter while it's still inside. When it slides up, it tilts
+     slightly and stays partially inserted — the lower-left corner remains
+     tucked behind the envelope front. */
+  .letter{
+    left:50%; bottom:14px; width:268px; height:172px;
+    transform:translateX(-50%) translateY(0) rotate(0deg);
+    background:var(--paper);
+    background-image:
+      radial-gradient(120% 100% at 50% 0%, rgba(176,138,94,.04), transparent 60%);
+    border:1px solid var(--paper-edge);
+    border-radius:2px;
+    padding:18px 20px;
+    box-shadow:0 6px 16px rgba(28,46,37,.18);
+    z-index:2;
+    transition:transform 1.7s .9s cubic-bezier(.3,.75,.25,1),
+               box-shadow 1.7s .9s ease;
+    text-align:center;
+    display:flex;flex-direction:column;justify-content:space-between;
+    transform-origin: 0% 100%; /* pivot on lower-left so it acts like the letter is being pulled out by its top-right */
+  }
+  .env-wrap.open .letter{
+    transform:translateX(-50%) translateY(-210px) rotate(6deg);
+    box-shadow:0 24px 46px rgba(28,46,37,.30);
+  }
+  .letter .l-eyebrow{font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-deep)}
+  .letter .l-script{font-family:"Pinyon Script",cursive;font-size:34px;line-height:1;color:var(--ink);margin:6px 0 0}
+  .letter .l-names{font-family:"Cormorant Garamond",serif;font-size:22px;line-height:1.15;letter-spacing:.005em;margin:2px 0 6px}
+  .letter .l-names em{font-style:italic;color:var(--gold);padding:0 .12em}
+  .letter .l-rule{width:30px;height:1px;background:var(--gold);margin:0 auto;opacity:.7}
+  .letter .l-date{font-family:"Cormorant Garamond",serif;font-size:18px;font-feature-settings:"tnum" 1;letter-spacing:.04em;margin:5px 0 0}
+  .letter .l-place{margin-top:3px;font-size:8.5px;letter-spacing:.4em;text-transform:uppercase;color:var(--soft)}
+  .letter .l-foot{font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:var(--soft);opacity:.7;font-style:italic;letter-spacing:.18em;text-transform:none;font-family:"Cormorant Garamond",serif;font-size:11px}
+
+  /* FRONT pocket */
+  .env-front{
+    bottom:0;left:0;right:0;height:200px;
+    background:linear-gradient(180deg,var(--env-mid) 0%,var(--env-deep) 100%);
+    border-radius:4px;
+    z-index:3;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+  }
+  .env-front::after{
+    /* slight V emboss at top to show pocket lip */
+    content:"";position:absolute;top:0;left:0;right:0;height:100%;
+    background:linear-gradient(180deg,rgba(0,0,0,.18) 0%,transparent 18%);
+    pointer-events:none;border-radius:4px;
+  }
+
+  /* FLAP — triangle pointing down, hinged at top.
+     Starts in FRONT of envelope (z:4). At mid-rotation (when flap is edge-on at ~90°)
+     z-index drops to 0 — the flap continues rotating BEHIND the envelope, like a real
+     paper flap pivoting back over the rear wall. */
+  .env-flap{
+    bottom:100px; left:0; right:0;
+    height:100px;
+    background:linear-gradient(180deg,var(--env-deep),var(--env-edge));
+    clip-path:polygon(0 0, 100% 0, 50% 100%);
+    transform-origin: top center;
+    transform:rotateX(0deg);
+    transition:transform 1.1s cubic-bezier(.55,0,.3,1),
+               z-index 0s linear .55s;
+    z-index:4;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,.18));
+  }
+  .env-wrap.open .env-flap{transform:rotateX(180deg); z-index:0}
+
+  /* WAX SEAL — stays stationary on the centre of the envelope front (where wax
+     would be pressed when sealing). When the envelope opens, the flap rotates
+     behind it; the seal itself doesn't travel anywhere. */
+  .wax{
+    position:absolute; bottom:50px; left:50%;
+    width:46px;height:46px;border-radius:50%;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(35% 35% at 35% 35%, #a25a44, var(--wax) 60%, var(--wax-deep) 100%);
+    box-shadow:0 2px 6px rgba(0,0,0,.3), inset 0 0 0 1px rgba(0,0,0,.18);
+    display:flex;align-items:center;justify-content:center;
+    z-index:5;
+  }
+  .wax .wax-mono{
+    font-family:"Cormorant Garamond",serif;font-style:italic;font-size:18px;color:rgba(255,255,255,.92);line-height:1
+  }
+
+  /* TAP hint pulse */
+  .tap-hint{
+    margin-top:18px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;
+    font-family:"Inter",sans-serif;font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--soft);
+    transition:opacity .6s
+  }
+  .tap-hint .dot{width:36px;height:36px;border-radius:50%;border:1px solid var(--soft);display:flex;align-items:center;justify-content:center;animation:pulse 2.4s ease-in-out infinite}
+  .tap-hint .dot::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--soft)}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:.85}50%{transform:scale(1.08);opacity:1}}
+  .env-wrap.open ~ .tap-hint{opacity:0;pointer-events:none}
+
+  /* SCROLL hint appears after open */
+  .scroll-after{
+    margin-top:auto;text-align:center;font-family:"Inter",sans-serif;font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--soft);
+    opacity:0;pointer-events:none;transition:opacity .8s 2s ease;
+    display:flex;flex-direction:column;align-items:center;gap:10px;
+    padding-top:30px;
+  }
+  .scroll-after .stem{width:1px;height:32px;background:linear-gradient(180deg,transparent,var(--soft))}
+  .env-wrap.open ~ .scroll-after{opacity:1;pointer-events:auto}
+
+  /* PERSONAL */
+  .personal{padding:30px 0 0;text-align:center}
+  .personal-inner{display:inline-flex;flex-direction:column;align-items:center;gap:6px;padding:14px 24px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .personal .label{font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-deep)}
+  .personal .who{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:22px;color:var(--ink)}
+
+  /* SECTIONS */
+  section.detail{padding:96px 0;border-top:1px solid var(--line)}
+  .sec-eyebrow{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:28px;font-size:10px;letter-spacing:.36em;color:var(--gold-deep);text-transform:uppercase}
+  .sec-eyebrow .ln{width:32px;height:1px;background:var(--gold);opacity:.6}
+  .sec-title{font-family:"Cormorant Garamond",serif;font-size:42px;text-align:center;line-height:1;margin-bottom:40px;font-weight:300}
+  .sec-title em{color:var(--gold);font-style:italic}
+
+  /* COUNTDOWN */
+  .cd{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .cd-c{padding:20px 8px;text-align:center;border:1px solid var(--line);background:var(--paper);border-radius:2px}
+  .cd-c.accent{background:var(--env-deep);color:var(--paper);border-color:var(--env-deep)}
+  .cd-c.accent .cd-lbl{color:rgba(255,255,255,.7)}
+  .cd-num{font-family:"Cormorant Garamond",serif;font-size:56px;line-height:1;font-feature-settings:"tnum" 1}
+  .cd-lbl{margin-top:8px;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--soft)}
+  .cd-foot{margin-top:18px;text-align:center;font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--soft)}
+
+  /* PROGRAMME */
+  .prog{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+  .pr{display:grid;grid-template-columns:74px 12px 1fr;gap:14px;padding:20px 0;align-items:baseline;border-bottom:1px solid var(--line)}
+  .pr .t{font-family:"Cormorant Garamond",serif;font-size:28px;line-height:1;font-feature-settings:"tnum" 1}
+  .pr .t em{color:var(--gold);font-style:italic}
+  .pr .dot{width:6px;height:6px;background:var(--gold);border-radius:50%;justify-self:center;align-self:center;transform:translateY(2px)}
+  .pr .body{display:flex;flex-direction:column;gap:2px}
+  .pr .body .name{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:18px}
+  .pr .body .desc{font-size:11px;color:var(--soft);letter-spacing:.04em;line-height:1.55}
+
+  /* PLACE */
+  .place-text{text-align:center}
+  .place-text .city{font-family:"Cormorant Garamond",serif;font-size:72px;line-height:.95;letter-spacing:-.005em;font-weight:300}
+  .place-text .city em{font-style:italic;color:var(--gold)}
+  .place-text .country{margin-top:8px;font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--soft)}
+  .place-text p{margin:20px auto 0;max-width:34ch;line-height:1.7;font-size:13px;color:var(--soft)}
+
+  /* CLOSING */
+  .closing{padding:90px 0 70px;text-align:center;border-top:1px solid var(--line)}
+  .closing-words{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:24px;line-height:1.4;max-width:22ch;margin:0 auto;color:var(--ink)}
+  .closing-words em{color:var(--gold);font-style:italic}
+  .closing-sig{margin-top:24px;font-family:"Cormorant Garamond",serif;font-size:18px}
+  .closing-sig em{color:var(--gold);font-style:italic}
+  .closing-meta{margin-top:8px;font-size:9px;letter-spacing:.4em;color:var(--soft);text-transform:uppercase}
+
+  /* On smaller screens, scale envelope */
+  @media (max-width:360px){
+    .env-wrap{transform:scale(.9);transform-origin:top center}
+  }
+</style>
+</head>
+<body>
+<main>
+
+  <!-- HERO -->
+  <section class="hero-screen">
+    <div class="topbar">
+      <span><span class="pip"></span>Kraków</span>
+      <span>03 · 07 · 26</span>
+    </div>
+
+    <div class="hero-eyebrow">— приглашение внутри —</div>
+
+    <div class="env-wrap" id="env" role="button" aria-label="Открыть конверт" tabindex="0">
+      <div class="env-shadow"></div>
+      <div class="env-back"></div>
+      <div class="letter">
+        <div class="l-eyebrow">— приглашаем вас на —</div>
+        <div>
+          <div class="l-script">Our Wedding</div>
+          <div class="l-names">Марина <em>&amp;</em> Александр</div>
+        </div>
+        <div class="l-rule"></div>
+        <div>
+          <div class="l-date">03 · 07 · 2026</div>
+          <div class="l-place">Kraków · Polska</div>
+        </div>
+        <div class="l-foot">мы будем счастливы видеть вас</div>
+      </div>
+      <div class="env-front"></div>
+      <div class="env-flap"></div>
+      <div class="wax"><span class="wax-mono">M&amp;A</span></div>
+    </div>
+
+    <div class="tap-hint">
+      <span class="dot"></span>
+      <span>письмо для вас</span>
+    </div>
+
+    <div class="scroll-after">
+      <span>детали ниже</span>
+      <span class="stem"></span>
+    </div>
+  </section>
+
+  <!-- PERSONAL -->
+  <div class="personal" id="personal" hidden>
+    <div class="personal-inner reveal">
+      <div class="label">для</div>
+      <div class="who" id="personal-who"></div>
+    </div>
+  </div>
+
+  <!-- COUNTDOWN -->
+  <section class="detail">
+    <div class="sec-eyebrow reveal"><span class="ln"></span><span>I — отсчёт</span><span class="ln"></span></div>
+    <h2 class="sec-title reveal d1">До нашего <em>дня</em></h2>
+    <div class="cd">
+      <div class="cd-c accent reveal d1"><div class="cd-num" id="cd-d">—</div><div class="cd-lbl">дней</div></div>
+      <div class="cd-c reveal d2"><div class="cd-num" id="cd-h">—</div><div class="cd-lbl">часов</div></div>
+      <div class="cd-c reveal d3"><div class="cd-num" id="cd-m">—</div><div class="cd-lbl">минут</div></div>
+      <div class="cd-c reveal d4"><div class="cd-num" id="cd-s">—</div><div class="cd-lbl">секунд</div></div>
+    </div>
+    <div class="cd-foot reveal d5">пятница · 3 июля 2026 · 11:30</div>
+  </section>
+
+  <!-- PROGRAMME -->
+  <section class="detail">
+    <div class="sec-eyebrow reveal"><span class="ln"></span><span>II — программа</span><span class="ln"></span></div>
+    <h2 class="sec-title reveal d1">Программа <em>дня</em></h2>
+    <div class="prog">
+      <div class="pr reveal d1"><div class="t"><em>11:00</em></div><span class="dot"></span><div class="body"><div class="name">Сбор гостей</div></div></div>
+      <div class="pr reveal d2"><div class="t">11:30</div><span class="dot"></span><div class="body"><div class="name">Церемония</div></div></div>
+      <div class="pr reveal d3"><div class="t">12:30</div><span class="dot"></span><div class="body"><div class="name">Поздравления и фото</div></div></div>
+      <div class="pr reveal d4"><div class="t">19:00</div><span class="dot"></span><div class="body"><div class="name">Ужин</div></div></div>
+      <div class="pr reveal d5"><div class="t"><em>22:00</em></div><span class="dot"></span><div class="body"><div class="name">Танцы до утра</div></div></div>
+    </div>
+  </section>
+
+  <!-- PLACE -->
+  <section class="detail">
+    <div class="sec-eyebrow reveal"><span class="ln"></span><span>III — место</span><span class="ln"></span></div>
+    <div class="place-text">
+      <h3 class="city reveal d1">Kra<em>k</em>ów</h3>
+      <div class="country reveal d2">Польша · Polska</div>
+      <p class="reveal d3">Точный адрес и логистику пришлём индивидуально ближе к дате. Если планируете прилёт, напишите нам, мы поможем со всеми деталями.</p>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <p class="closing-words reveal">Будем счастливы, <em>если вы будете рядом</em> в этот день.</p>
+    <div class="closing-sig reveal d2">Марина <em>&amp;</em> Александр</div>
+    <div class="closing-meta reveal d3">MMXXVI · Kraków</div>
+  </section>
+
+</main>
+
+<script>
+  // Envelope open — auto-opens after flying in; user can also tap to re-trigger
+  (function(){
+    var env = document.getElementById('env');
+    function open(){ env.classList.add('open'); }
+    env.addEventListener('click', open);
+    env.addEventListener('keydown', function(e){
+      if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(); }
+    });
+    // Auto-open ~2.4s after page load (after fly-in finishes ~1.8s + small beat)
+    setTimeout(open, 2400);
+  })();
+
+  // Personalization
+  (function(){
+    var p = new URLSearchParams(location.search);
+    var g = p.get('guest') || p.get('name') || p.get('id');
+    if(g){ try{g=decodeURIComponent(g)}catch(e){}
+      g=g.trim();
+      if(g){ document.getElementById('personal-who').textContent=g; document.getElementById('personal').hidden=false; }
+    }
+  })();
+
+  // Countdown
+  (function(){
+    var target = new Date('2026-07-03T11:30:00+02:00').getTime();
+    var d=document.getElementById('cd-d'),h=document.getElementById('cd-h'),m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
+    function pad(n){return n<10?'0'+n:''+n}
+    function tick(){
+      var diff = Math.max(0, target - Date.now());
+      d.textContent = Math.floor(diff/86400000);
+      h.textContent = pad(Math.floor(diff/3600000)%24);
+      m.textContent = pad(Math.floor(diff/60000)%60);
+      s.textContent = pad(Math.floor(diff/1000)%60);
+    }
+    tick(); setInterval(tick,1000);
+  })();
+
+  // Reveal on scroll
+  (function(){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    },{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  })();
+</script>
+</body>
+</html>

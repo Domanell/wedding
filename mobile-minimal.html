@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>М | А · 03.07.2026 · Kraków</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Pinyon+Script&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#f6f3ec;
+    --paper:#fbf8f1;
+    --ink:#1a1815;
+    --soft:#7e766b;
+    --line:rgba(26,24,21,.18);
+    --hair:rgba(26,24,21,.30);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:"Inter",system-ui,sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{min-height:100vh;overflow-x:hidden}
+  .serif{font-family:"Cormorant Garamond",serif}
+  .script{font-family:"Pinyon Script",cursive}
+  .num{font-feature-settings:"tnum" 1,"lnum" 1}
+
+  /* reveals */
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity 1.2s cubic-bezier(.2,.7,.2,1),transform 1.2s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .d1{transition-delay:.10s}.d2{transition-delay:.24s}.d3{transition-delay:.4s}.d4{transition-delay:.56s}.d5{transition-delay:.72s}.d6{transition-delay:.9s}
+
+  /* growing vertical line — entry animation */
+  @keyframes growV { from { transform: scaleY(0); transform-origin: top } to { transform: scaleY(1); transform-origin: top } }
+  .grow-v{ animation: growV 1.4s cubic-bezier(.7,0,.3,1) .2s both }
+
+  main{max-width:480px;margin:0 auto;padding:0 24px;position:relative}
+
+  /* HERO */
+  .hero{min-height:100svh;display:grid;grid-template-rows:auto 1fr auto;padding:32px 0 28px;text-align:center}
+
+  .top-meta{display:flex;justify-content:space-between;align-items:center;font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--soft)}
+  .top-meta .pip{display:inline-block;width:5px;height:5px;background:var(--ink);border-radius:50%}
+
+  /* CENTRAL CONTENT */
+  .hero-center{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:46px;padding:48px 0}
+
+  /* full-height thin spine line — runs behind monogram & date */
+  .spine{
+    position:absolute; top:0; bottom:0; left:50%;
+    width:1px; background:var(--hair);
+    z-index:0;
+  }
+
+  /* MONOGRAM — М | А with vertical line through */
+  .mono{
+    position:relative; z-index:1;
+    display:flex;align-items:center;justify-content:center;gap:18px;
+    font-family:"Cormorant Garamond",serif;font-weight:400;
+    font-size:64px;line-height:1;letter-spacing:.01em;
+  }
+  .mono .glyph{display:inline-block;padding:0 4px;background:var(--bg)}
+  .mono .bar{
+    position:absolute; top:-22px; bottom:-22px; left:50%;
+    width:1px; background:var(--ink);
+    transform:translateX(-50%);
+    z-index:-1;
+  }
+  .mono-tag{margin-top:6px;font-size:9px;letter-spacing:.42em;text-transform:uppercase;color:var(--soft);background:var(--bg);padding:0 8px;display:inline-block;position:relative;z-index:1}
+
+  /* SAVE OUR DATE block */
+  .save{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:14px;background:var(--bg);padding:14px 0}
+  .save .line1{
+    display:flex;align-items:center;justify-content:center;gap:18px;
+    font-family:"Cormorant Garamond",serif;font-size:22px;letter-spacing:.5em;text-transform:uppercase;font-weight:400;
+  }
+  .save .line1 .script{font-family:"Pinyon Script",cursive;font-size:36px;text-transform:lowercase;letter-spacing:0;color:var(--ink);transform:translateY(-3px)}
+  .save .line2{font-family:"Cormorant Garamond",serif;font-size:18px;letter-spacing:.42em;text-transform:uppercase}
+  .save .line3{font-size:10px;letter-spacing:.44em;text-transform:uppercase;color:var(--soft);display:flex;gap:10px;align-items:center}
+  .save .line3 .sep{color:var(--hair)}
+
+  /* STACKED VERTICAL DATE */
+  .stack{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:0;font-family:"Cormorant Garamond",serif;font-weight:300;font-feature-settings:"tnum" 1;font-size:72px;line-height:1.1;letter-spacing:.02em;background:var(--bg);padding:18px 0}
+  .stack .d{display:block;text-align:center}
+
+  /* labels above/below stack */
+  .stack-tag{position:relative;z-index:1;font-size:9px;letter-spacing:.42em;text-transform:uppercase;color:var(--soft);background:var(--bg);padding:0 12px;display:inline-block}
+
+  /* PERSONAL */
+  .personal{padding-top:32px;text-align:center;position:relative;z-index:1}
+  .personal-inner{display:inline-flex;flex-direction:column;align-items:center;gap:6px;padding:12px 22px;background:var(--bg)}
+  .personal .label{font-size:9px;letter-spacing:.42em;text-transform:uppercase;color:var(--soft)}
+  .personal .who{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:22px;color:var(--ink)}
+
+  /* SCROLL HINT */
+  .scroll-hint{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:10px;font-size:9px;letter-spacing:.42em;text-transform:uppercase;color:var(--soft);background:var(--bg);padding:14px 0 0}
+  .scroll-hint .dot{display:inline-block;width:4px;height:4px;background:var(--ink);border-radius:50%}
+
+  /* SECTION (countdown, programme, place) */
+  section.detail{padding:96px 0;border-top:1px solid var(--line);position:relative}
+  .sec-eyebrow{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:30px;font-size:10px;letter-spacing:.4em;color:var(--soft);text-transform:uppercase}
+  .sec-eyebrow .ln{width:32px;height:1px;background:var(--line)}
+  .sec-title{font-family:"Cormorant Garamond",serif;font-size:44px;text-align:center;line-height:1;margin-bottom:42px;font-weight:300}
+  .sec-title em{font-style:italic}
+
+  /* COUNTDOWN */
+  .cd-line{display:grid;grid-template-columns:repeat(4,1fr);align-items:end;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .cd-c{padding:22px 4px 18px;text-align:center;border-right:1px solid var(--line)}
+  .cd-c:last-child{border-right:none}
+  .cd-num{font-family:"Cormorant Garamond",serif;font-size:42px;line-height:1;font-feature-settings:"tnum" 1}
+  .cd-num em{font-style:italic}
+  .cd-lbl{margin-top:8px;font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:var(--soft)}
+  .cd-foot{margin-top:18px;text-align:center;font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--soft)}
+
+  /* PROGRAMME */
+  .prog{display:flex;flex-direction:column;border-top:1px solid var(--line)}
+  .pr{display:grid;grid-template-columns:74px 12px 1fr;gap:14px;padding:18px 0;align-items:baseline;border-bottom:1px solid var(--line)}
+  .pr .t{font-family:"Cormorant Garamond",serif;font-size:26px;line-height:1;font-feature-settings:"tnum" 1}
+  .pr .t em{font-style:italic}
+  .pr .dot{width:5px;height:5px;background:var(--ink);border-radius:50%;justify-self:center;align-self:center;transform:translateY(2px)}
+  .pr .body{display:flex;flex-direction:column;gap:2px}
+  .pr .body .name{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:17px}
+  .pr .body .desc{font-size:11px;color:var(--soft);letter-spacing:.04em;line-height:1.55}
+
+  /* PLACE */
+  .place-text{text-align:center}
+  .place-text .city{font-family:"Cormorant Garamond",serif;font-size:74px;line-height:.95;letter-spacing:-.005em;font-weight:300}
+  .place-text .city em{font-style:italic}
+  .place-text .country{margin-top:8px;font-size:10px;letter-spacing:.42em;text-transform:uppercase;color:var(--soft)}
+  .place-text p{margin:20px auto 0;max-width:34ch;line-height:1.7;font-size:13px;color:var(--soft)}
+
+  /* CLOSING */
+  .closing{padding:96px 0 80px;text-align:center;border-top:1px solid var(--line)}
+  .closing-words{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:24px;line-height:1.4;max-width:22ch;margin:0 auto;color:var(--ink);font-weight:300}
+  .closing-sig{margin-top:28px;font-family:"Cormorant Garamond",serif;font-size:20px}
+  .closing-sig em{font-style:italic}
+  .closing-meta{margin-top:10px;font-size:9px;letter-spacing:.42em;color:var(--soft);text-transform:uppercase}
+
+</style>
+</head>
+<body>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="top-meta reveal">
+      <span>save the date</span>
+      <span><span class="pip"></span>Kraków</span>
+    </div>
+
+    <div class="hero-center">
+      <span class="spine grow-v"></span>
+
+      <!-- MONOGRAM -->
+      <div>
+        <div class="mono reveal d1">
+          <span class="glyph">М</span>
+          <span class="glyph">А</span>
+        </div>
+        <div style="margin-top:10px"><span class="mono-tag reveal d2">monogram · est. 2026</span></div>
+      </div>
+
+      <!-- SAVE OUR DATE -->
+      <div class="save">
+        <div class="line1 reveal d2">
+          <span>SAVE</span>
+          <span class="script">our</span>
+          <span>DATE</span>
+        </div>
+        <div class="line2 reveal d3">3 ИЮЛЯ 2026</div>
+        <div class="line3 reveal d4">
+          <span>KRAKÓW</span>
+          <span class="sep">|</span>
+          <span>POLSKA</span>
+        </div>
+      </div>
+
+      <!-- STACKED DATE -->
+      <div>
+        <span class="stack-tag reveal d4">— date —</span>
+        <div class="stack reveal d5">
+          <span class="d">03</span>
+          <span class="d">07</span>
+          <span class="d">26</span>
+        </div>
+        <span class="stack-tag reveal d6">— mmxxvi —</span>
+      </div>
+
+      <!-- PERSONAL -->
+      <div class="personal" id="personal" hidden>
+        <div class="personal-inner reveal">
+          <div class="label">для</div>
+          <div class="who" id="personal-who"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-hint reveal d6">
+      <span>scroll</span>
+      <span class="dot"></span>
+      <span>details below</span>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section class="detail">
+    <div class="sec-eyebrow reveal"><span class="ln"></span><span>I — countdown</span><span class="ln"></span></div>
+    <h2 class="sec-title reveal d1">До <em>дня</em></h2>
+    <div class="cd-line">
+      <div class="cd-c reveal d1"><div class="cd-num" id="cd-d">—</div><div class="cd-lbl">дней</div></div>
+      <div class="cd-c reveal d2"><div class="cd-num"><em id="cd-h">—</em></div><div class="cd-lbl">часов</div></div>
+      <div class="cd-c reveal d3"><div class="cd-num" id="cd-m">—</div><div class="cd-lbl">минут</div></div>
+      <div class="cd-c reveal d4"><div class="cd-num"><em id="cd-s">—</em></div><div class="cd-lbl">секунд</div></div>
+    </div>
+    <div class="cd-foot reveal d5">пятница · 3 июля 2026 · 11:30</div>
+  </section>
+
+  <!-- PROGRAMME -->
+  <section class="detail">
+    <div class="sec-eyebrow reveal"><span class="ln"></span><span>II — programme</span><span class="ln"></span></div>
+    <h2 class="sec-title reveal d1">Программа <em>дня</em></h2>
+    <div class="prog">
+      <div class="pr reveal d1"><div class="t"><em>11:00</em></div><span class="dot"></span><div class="body"><div class="name">Сбор гостей</div></div></div>
+      <div class="pr reveal d2"><div class="t">11:30</div><span class="dot"></span><div class="body"><div class="name">Церемония</div></div></div>
+      <div class="pr reveal d3"><div class="t">12:30</div><span class="dot"></span><div class="body"><div class="name">Поздравления и фото</div></div></div>
+      <div class="pr reveal d4"><div class="t">19:00</div><span class="dot"></span><div class="body"><div class="name">Ужин</div></div></div>
+      <div class="pr reveal d5"><div class="t"><em>22:00</em></div><span class="dot"></span><div class="body"><div class="name">Танцы до утра</div></div></div>
+    </div>
+  </section>
+
+  <!-- PLACE -->
+  <section class="detail">
+    <div class="sec-eyebrow reveal"><span class="ln"></span><span>III — place</span><span class="ln"></span></div>
+    <div class="place-text">
+      <h3 class="city reveal d1">Kra<em>k</em>ów</h3>
+      <div class="country reveal d2">Польша · Polska</div>
+      <p class="reveal d3">Точный адрес и логистику пришлём индивидуально ближе к дате. Если планируете прилёт, напишите нам, и мы поможем со всеми деталями.</p>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <p class="closing-words reveal">Будем счастливы разделить этот день вместе с вами.</p>
+    <div class="closing-sig reveal d2">Марина <em>&amp;</em> Александр</div>
+    <div class="closing-meta reveal d3">MMXXVI · Kraków</div>
+  </section>
+
+</main>
+
+<script>
+  // Personalization
+  (function(){
+    var p = new URLSearchParams(location.search);
+    var g = p.get('guest') || p.get('name') || p.get('id');
+    if(g){ try{g=decodeURIComponent(g)}catch(e){}
+      g=g.trim();
+      if(g){ document.getElementById('personal-who').textContent=g; document.getElementById('personal').hidden=false; }
+    }
+  })();
+
+  // Countdown
+  (function(){
+    var target = new Date('2026-07-03T11:30:00+02:00').getTime();
+    var d=document.getElementById('cd-d'),h=document.getElementById('cd-h'),m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
+    function pad(n){return n<10?'0'+n:''+n}
+    function tick(){
+      var diff = Math.max(0, target - Date.now());
+      d.textContent = Math.floor(diff/86400000);
+      h.textContent = pad(Math.floor(diff/3600000)%24);
+      m.textContent = pad(Math.floor(diff/60000)%60);
+      s.textContent = pad(Math.floor(diff/1000)%60);
+    }
+    tick(); setInterval(tick,1000);
+  })();
+
+  // Reveal
+  (function(){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    },{threshold:.12, rootMargin:'0px 0px -8% 0px'});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+    setTimeout(function(){
+      document.querySelectorAll('.hero .reveal').forEach(function(el){ el.classList.add('in'); });
+    }, 200);
+  })();
+</script>
+</body>
+</html>
