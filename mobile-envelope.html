@@ -118,22 +118,6 @@
 				vertical-align: middle;
 			}
 
-			.hero-eyebrow {
-				margin-top: 14px;
-				padding-top: 0;
-				font-family: 'Cormorant Garamond', serif;
-				font-style: italic;
-				font-size: 18px;
-				color: var(--soft);
-				text-align: center;
-				opacity: 0.8;
-				transition: opacity 0.6s;
-			}
-			.env-wrap.open ~ .hero-eyebrow {
-				opacity: 0;
-				pointer-events: none;
-			}
-
 			/* ENVELOPE */
 			@keyframes envFly {
 				0% {
@@ -382,54 +366,6 @@
 				font-size: 18px;
 				color: rgba(255, 255, 255, 0.92);
 				line-height: 1;
-			}
-
-			/* TAP hint pulse */
-			.tap-hint {
-				margin-top: 18px;
-				text-align: center;
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				gap: 10px;
-				font-family: 'Inter', sans-serif;
-				font-size: 10px;
-				letter-spacing: 0.36em;
-				text-transform: uppercase;
-				color: var(--soft);
-				transition: opacity 0.6s;
-			}
-			.tap-hint .dot {
-				width: 36px;
-				height: 36px;
-				border-radius: 50%;
-				border: 1px solid var(--soft);
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				animation: pulse 2.4s ease-in-out infinite;
-			}
-			.tap-hint .dot::after {
-				content: '';
-				width: 8px;
-				height: 8px;
-				border-radius: 50%;
-				background: var(--soft);
-			}
-			@keyframes pulse {
-				0%,
-				100% {
-					transform: scale(1);
-					opacity: 0.85;
-				}
-				50% {
-					transform: scale(1.08);
-					opacity: 1;
-				}
-			}
-			.env-wrap.open ~ .tap-hint {
-				opacity: 0;
-				pointer-events: none;
 			}
 
 			/* SCROLL hint appears after open */
@@ -699,8 +635,6 @@
 					<span>03 · 07 · 26</span>
 				</div>
 
-				<div class="hero-eyebrow">— приглашение внутри —</div>
-
 				<div class="env-wrap" id="env" role="button" aria-label="Открыть конверт" tabindex="0">
 					<div class="env-shadow"></div>
 					<div class="env-back"></div>
@@ -720,11 +654,6 @@
 					<div class="env-front"></div>
 					<div class="env-flap"></div>
 					<div class="wax"><span class="wax-mono">M&amp;A</span></div>
-				</div>
-
-				<div class="tap-hint">
-					<span class="dot"></span>
-					<span>письмо для вас</span>
 				</div>
 
 				<div class="scroll-after">
