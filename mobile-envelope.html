@@ -164,9 +164,12 @@
 				perspective: 1600px;
 				cursor: pointer;
 				user-select: none;
-				animation: envFly 1.85s cubic-bezier(0.25, 0.78, 0.2, 1) 0.18s both;
+				opacity: 0;
 				transform-origin: 50% 50%;
 				will-change: transform;
+			}
+			.env-wrap.ready {
+				animation: envFly 1.85s cubic-bezier(0.25, 0.78, 0.2, 1) 0.18s both;
 			}
 			.env-shadow {
 				position: absolute;
@@ -685,6 +688,38 @@
 				text-transform: uppercase;
 			}
 
+			/* PRELOADER */
+			#preloader {
+				position: fixed;
+				inset: 0;
+				background: var(--bg);
+				z-index: 9999;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transition:
+					opacity 0.9s ease,
+					visibility 0.9s ease;
+			}
+			#preloader.done {
+				opacity: 0;
+				visibility: hidden;
+				pointer-events: none;
+			}
+			.preloader-spinner {
+				width: 32px;
+				height: 32px;
+				border-radius: 50%;
+				border: 1px solid rgba(176, 138, 94, 0.2);
+				border-top-color: var(--gold);
+				animation: spin 1s linear infinite;
+			}
+			@keyframes spin {
+				to {
+					transform: rotate(360deg);
+				}
+			}
+
 			/* On smaller screens, scale envelope */
 			@media (max-width: 360px) {
 				.env-wrap {
@@ -694,6 +729,10 @@
 		</style>
 	</head>
 	<body>
+		<div id="preloader" aria-hidden="true">
+			<div class="preloader-spinner"></div>
+		</div>
+
 		<main>
 			<!-- HERO -->
 			<section class="hero-screen">
@@ -823,21 +862,36 @@
 		</main>
 
 		<script>
-			// Envelope open — auto-opens after flying in; user can also tap to re-trigger
+			// Envelope open + preloader dismiss
 			(function () {
 				var env = document.getElementById('env');
-				function open() {
+				var preloader = document.getElementById('preloader');
+
+				function openEnv() {
 					env.classList.add('open');
 				}
-				env.addEventListener('click', open);
+
+				env.addEventListener('click', openEnv);
 				env.addEventListener('keydown', function (e) {
 					if (e.key === 'Enter' || e.key === ' ') {
 						e.preventDefault();
-						open();
+						openEnv();
 					}
 				});
-				// Auto-open ~2.4s after page load (after fly-in finishes ~1.8s + small beat)
-				setTimeout(open, 2400);
+
+				// Wait for fonts + all resources, then start animation
+				Promise.all([
+					document.fonts.ready,
+					new Promise(function (resolve) {
+						if (document.readyState === 'complete') resolve();
+						else window.addEventListener('load', resolve);
+					}),
+				]).then(function () {
+					preloader.classList.add('done');
+					env.classList.add('ready');
+					// Auto-open after fly-in (~1.85s + 0.18s delay) + small beat
+					setTimeout(openEnv, 2400);
+				});
 			})();
 
 			// Personalization
