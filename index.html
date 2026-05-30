@@ -3,13 +3,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-		<title>Марина & Александр · 03.07.2026 · Kraków</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400;500&family=Monsieur+La+Doulaise&family=Pinyon+Script&display=swap"
-			rel="stylesheet"
-		/>
+		<title>Марина & Александр · 03.07.2026</title>
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
@@ -21,25 +15,23 @@
 			<!-- HERO -->
 			<section class="hero-screen">
 				<div class="topbar">
-					<span><span class="pip"></span>Kraków</span>
+					<span>M & A</span>
 					<span>03 · 07 · 26</span>
 				</div>
 
-				<div class="env-wrap" id="env" role="button" aria-label="Открыть конверт" tabindex="0">
+				<div class="env-wrap" id="env" role="button" tabindex="0">
 					<div class="env-shadow"></div>
 					<div class="env-back"></div>
 					<div class="letter">
-						<div class="l-eyebrow">— приглашаем вас на —</div>
-						<div>
-							<div class="l-script">Our Wedding</div>
-							<div class="l-names">Марина <em>&amp;</em> Александр</div>
+						<div class="l-names-block">
+							<div class="l-name l-1">Марина</div>
+							<div class="l-amp">&amp;</div>
+							<div class="l-name l-2">Александр</div>
 						</div>
-						<div class="l-rule"></div>
-						<div>
+						<div class="l-bottom">
 							<div class="l-date">03 · 07 · 2026</div>
-							<div class="l-place">Kraków · Polska</div>
+							<div class="l-place">Kraków</div>
 						</div>
-						<div class="l-foot">мы будем счастливы видеть вас</div>
 					</div>
 					<div class="env-front"></div>
 					<div class="env-flap"></div>
@@ -52,96 +44,145 @@
 				</div>
 			</section>
 
-			<!-- PERSONAL -->
-			<div class="personal" id="personal" hidden>
-				<div class="personal-inner reveal">
-					<div class="label">для</div>
-					<div class="who" id="personal-who"></div>
+			<!-- INTRO -->
+			<section class="s-intro detail-no-border">
+				<div class="intro-heading reveal">
+					<img src="img/decorate.svg" alt="" class="ornament intro-ornament" />
+					<div class="intro-body">
+						<div>
+							<div class="intro-script sec-script">Дорогие</div>
+							<div class="intro-subtitle">друзья и родные!</div>
+						</div>
+						<p>Мы приглашаем вас на нашу свадьбу.</p>
+						<p>
+							Мы будем рады разделить с&nbsp;Вами радость неповторимого для нас дня&nbsp;— дня нашей
+							свадьбы.
+						</p>
+					</div>
 				</div>
-			</div>
+
+				<div class="cal-card reveal d2">
+					<div class="cal-header"><span>Июль</span><span>2026</span></div>
+					<div class="cal-grid cal-grid--header">
+						<span class="cal-dow">ПН</span><span class="cal-dow">ВТ</span><span class="cal-dow">СР</span
+						><span class="cal-dow">ЧТ</span><span class="cal-dow">ПТ</span><span class="cal-dow">СБ</span
+						><span class="cal-dow">ВС</span>
+					</div>
+					<div class="cal-grid">
+						<span class="cal-day cal-day--out">29</span><span class="cal-day cal-day--out">30</span
+						><span class="cal-day">1</span><span class="cal-day">2</span
+						><span class="cal-day cal-day--hl"><span>3</span></span
+						><span class="cal-day">4</span><span class="cal-day">5</span> <span class="cal-day">6</span
+						><span class="cal-day">7</span><span class="cal-day">8</span><span class="cal-day">9</span
+						><span class="cal-day">10</span><span class="cal-day">11</span><span class="cal-day">12</span>
+						<span class="cal-day">13</span><span class="cal-day">14</span><span class="cal-day">15</span
+						><span class="cal-day">16</span><span class="cal-day">17</span><span class="cal-day">18</span
+						><span class="cal-day">19</span> <span class="cal-day">20</span><span class="cal-day">21</span
+						><span class="cal-day">22</span><span class="cal-day">23</span><span class="cal-day">24</span
+						><span class="cal-day">25</span><span class="cal-day">26</span> <span class="cal-day">27</span
+						><span class="cal-day">28</span><span class="cal-day">29</span><span class="cal-day">30</span
+						><span class="cal-day">31</span><span class="cal-day cal-day--out">1</span
+						><span class="cal-day cal-day--out">2</span>
+					</div>
+				</div>
+			</section>
 
 			<!-- COUNTDOWN -->
-			<section class="detail">
-				<div class="sec-eyebrow reveal">
-					<span class="ln"></span><span>I — отсчёт</span><span class="ln"></span>
-				</div>
-				<h2 class="sec-title reveal d1">До нашего <em>дня</em></h2>
+			<section class="detail countdown">
+				<img src="img/decorate.svg" alt="" class="ornament" />
+				<div class="cd-eyebrow reveal">осталось совсем немного времени</div>
 				<div class="cd">
-					<div class="cd-c accent reveal d1">
+					<div class="cd-c cd-c--accent reveal d1">
 						<div class="cd-num" id="cd-d">—</div>
 						<div class="cd-lbl">дней</div>
 					</div>
-					<div class="cd-c reveal d2">
-						<div class="cd-num" id="cd-h">—</div>
-						<div class="cd-lbl">часов</div>
-					</div>
-					<div class="cd-c reveal d3">
-						<div class="cd-num" id="cd-m">—</div>
-						<div class="cd-lbl">минут</div>
-					</div>
-					<div class="cd-c reveal d4">
-						<div class="cd-num" id="cd-s">—</div>
-						<div class="cd-lbl">секунд</div>
+					<div class="cd-hms">
+						<div class="cd-c reveal d2">
+							<div class="cd-num" id="cd-h">—</div>
+							<div class="cd-lbl">часов</div>
+						</div>
+						<div class="cd-c reveal d3">
+							<div class="cd-num" id="cd-m">—</div>
+							<div class="cd-lbl">минут</div>
+						</div>
+						<div class="cd-c reveal d4">
+							<div class="cd-num" id="cd-s">—</div>
+							<div class="cd-lbl">секунд</div>
+						</div>
 					</div>
 				</div>
 				<div class="cd-foot reveal d5">пятница · 3 июля 2026 · 11:30</div>
 			</section>
 
 			<!-- PROGRAMME -->
-			<section class="detail">
-				<div class="sec-eyebrow reveal">
-					<span class="ln"></span><span>II — программа</span><span class="ln"></span>
-				</div>
-				<h2 class="sec-title reveal d1">Программа <em>дня</em></h2>
+			<section class="detail detail-no-border">
+				<h2 class="sec-script reveal d1">Программа <em>дня</em></h2>
 				<div class="prog">
 					<div class="pr reveal d1">
-						<div class="t"><em>11:00</em></div>
+						<div class="time gold">11:00</div>
 						<span class="dot"></span>
-						<div class="body"><div class="name">Сбор гостей</div></div>
+						<div class="body">Сбор гостей</div>
 					</div>
 					<div class="pr reveal d2">
-						<div class="t">11:30</div>
+						<div class="time">11:30</div>
 						<span class="dot"></span>
-						<div class="body"><div class="name">Церемония</div></div>
+						<div class="body">Церемония</div>
 					</div>
 					<div class="pr reveal d3">
-						<div class="t">12:30</div>
+						<div class="time">11:45</div>
 						<span class="dot"></span>
-						<div class="body"><div class="name">Поздравления и фото</div></div>
+						<div class="body">Поздравления и фото</div>
 					</div>
 					<div class="pr reveal d4">
-						<div class="t">19:00</div>
+						<div class="time">17:00</div>
 						<span class="dot"></span>
-						<div class="body"><div class="name">Ужин</div></div>
+						<div class="body">Праздничный ужин</div>
 					</div>
 					<div class="pr reveal d5">
-						<div class="t"><em>22:00</em></div>
+						<div class="time gold">21:00</div>
 						<span class="dot"></span>
-						<div class="body"><div class="name">Танцы до утра</div></div>
+						<div class="body">Танцы до утра</div>
 					</div>
 				</div>
 			</section>
 
 			<!-- PLACE -->
-			<section class="detail">
-				<div class="sec-eyebrow reveal">
-					<span class="ln"></span><span>III — место</span><span class="ln"></span>
-				</div>
-				<div class="place-text">
-					<h3 class="city reveal d1">Kra<em>k</em>ów</h3>
-					<div class="country reveal d2">Польша · Polska</div>
-					<p class="reveal d3">
-						Точный адрес и логистику пришлём индивидуально ближе к дате. Если планируете прилёт, напишите
-						нам, мы поможем со всеми деталями.
-					</p>
+			<section class="detail place detail-no-border">
+				<h2 class="sec-script reveal d1"><em>Место</em> проведения</h2>
+				<div class="venue-cards">
+					<div class="venue-card reveal d2">
+						<div class="venue-card-label">Церемония</div>
+
+						<div class="venue-card-info">
+							<div class="venue-card-name">Место проведения уточняется</div>
+							<div class="venue-card-time">сбор гостей - 11:00</div>
+						</div>
+						<button class="venue-btn venue-btn--tbd" disabled>Место уточняется</button>
+					</div>
+					<div class="venue-card reveal d3">
+						<div class="venue-card-label">Праздничный ужин</div>
+						<img class="venue-card-img" src="img/place.png"></img>
+						<div class="venue-card-info">
+							<div class="venue-card-name">MAMATUTAJ</div>
+							<div class="venue-card-time">начало ужина - 17:00</div>
+						</div>
+						<a
+							class="venue-btn"
+							href="https://maps.app.goo.gl/szh8DAX3W4brn2PK7"
+							target="_blank"
+							rel="noopener"
+							>Открыть карту</a
+						>
+					</div>
 				</div>
 			</section>
 
 			<!-- CLOSING -->
 			<section class="closing">
-				<p class="closing-words reveal">Будем счастливы, <em>если вы будете рядом</em> в этот день.</p>
+				<img src="img/decorate.svg" alt="" class="ornament" />
+				<p class="closing-words reveal">Будем <span>счастливы</span> разделить с вами радость этого дня</p>
 				<div class="closing-sig reveal d2">Марина <em>&amp;</em> Александр</div>
-				<div class="closing-meta reveal d3">MMXXVI · Kraków</div>
+				<div class="closing-meta  d3">2026 · Kraków</div>
 			</section>
 		</main>
 
